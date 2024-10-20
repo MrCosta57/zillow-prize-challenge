@@ -1,0 +1,9 @@
+scikit-learn==1.5
+numpy==2.1
+pandas==2.2
+seaborn
+xgboost-cpu==2.1
+matplotlib
+ipykernel
+pyarrow
+joblib
