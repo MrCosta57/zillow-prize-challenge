@@ -29,7 +29,8 @@ def fillna_knn(
     X_target = df.loc[notmiss, whole]
 
     X = X_target[base]
-    Y = X_target[target]
+    Y = X_target[target].astype("category")
+    print("Y shape: ", Y.shape)
 
     X_train_80, X_test, y_train_80, y_test = train_test_split(X, Y, test_size=0.20)
 
@@ -56,10 +57,9 @@ def zoningcode2int(df: pd.DataFrame, target: str):
     print("Dealing with variables that are actually string/categories...")
     storenull = df[target].isna()
     enc = LabelEncoder()
-    df[target] = df[target].astype(str)
 
     # print('fit and transform')
-    df[target] = enc.fit_transform(df[target])
+    df[target] = enc.fit_transform(df[target].astype("category"))
     print("num of categories: ", enc.classes_.shape)
     df.loc[storenull, target] = np.nan
     # print('recover the nan value\n')
@@ -131,3 +131,15 @@ def plot_feature_importance(importance: List | np.ndarray, names, model_type, li
     plt.title(model_type)
     plt.xlabel("FEATURE IMPORTANCE")
     plt.ylabel("FEATURE NAMES")
+
+
+def to_float64_float32(df: pd.DataFrame):
+    float_cols = df.select_dtypes(np.float64)
+    # Reduce occupied memory by 600MB
+    df[float_cols.columns] = float_cols.astype(np.float32)
+
+
+def to_int64_int32(df: pd.DataFrame):
+    int_cols = df.select_dtypes(np.int64)
+    # Reduce occupied memory by 600MB
+    df[int_cols.columns] = int_cols.astype(np.int32)
