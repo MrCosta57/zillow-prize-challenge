@@ -29,8 +29,7 @@ def fillna_knn(
     X_target = df.loc[notmiss, whole]
 
     X = X_target[base]
-    Y = X_target[target].astype("category")
-    print("Y shape: ", Y.shape)
+    Y = X_target[target]
 
     X_train_80, X_test, y_train_80, y_test = train_test_split(X, Y, test_size=0.20)
 
@@ -57,9 +56,10 @@ def zoningcode2int(df: pd.DataFrame, target: str):
     print("Dealing with variables that are actually string/categories...")
     storenull = df[target].isna()
     enc = LabelEncoder()
+    df[target] = df[target].astype(str)
 
     # print('fit and transform')
-    df[target] = enc.fit_transform(df[target].astype("category"))
+    df[target] = enc.fit_transform(df[target])
     print("num of categories: ", enc.classes_.shape)
     df.loc[storenull, target] = np.nan
     # print('recover the nan value\n')
