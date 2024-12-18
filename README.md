@@ -1,5 +1,9 @@
 # Predictive Real Estate: Advancing the Zestimate Model
 
+<div align="center">
+    <img src="assets/house_img.jpg" alt="cat" style="width:60%;"/>
+</div>
+
 ## Description
 
 This project addresses the <a href="https://www.kaggle.com/c/zillow-prize-1/overview">Zillow Prize challenge</a>, which aims to enhance the accuracy of Zillow's Zestimate home valuation model. The Zestimate has revolutionized the U.S. real estate industry by providing consumers with access to estimated home values based on extensive data analysis. Leveraging 7.5 million statistical and machine learning models, Zillow continuously refines its estimates, achieving a median margin of error reduction from 14% to 5%.
